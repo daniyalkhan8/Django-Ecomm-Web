@@ -1,0 +1,33 @@
+# Media files
+media/
+
+# Static files
+static/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# IDE and editor files
+.idea/
+.vscode/
+.pydevproject
+.project
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Django-specific files
+*.pyc
+*.mo
+
+# Python 3.x cached bytecode files
+__pycache__/
+
+# Other files
+requirements.txt
+*.env
