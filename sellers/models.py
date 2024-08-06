@@ -1,10 +1,11 @@
 from django.db import models
 from utils.models import City, State
-from django.contrib.auth.models import User
+
+from users.models import CustomUser
 
 
 class Seller(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user_id = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
     dob = models.DateField()
     city_id = models.ForeignKey(City, on_delete=models.CASCADE)
     street = models.CharField(max_length=50)

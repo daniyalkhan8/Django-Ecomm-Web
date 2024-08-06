@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'wishlist.apps.WishlistConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = "users.CustomUser"
 
 
 # Static files (CSS, JavaScript, Images)
