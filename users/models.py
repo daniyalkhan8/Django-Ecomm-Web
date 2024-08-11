@@ -21,7 +21,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     street = models.CharField(max_length=50, null=True, blank=True)
     state = models.ForeignKey(State, null=True, blank=True, on_delete=models.CASCADE)
     postal_code = models.CharField(max_length=20, blank=True, null=True)
-    profile_picture = models.ImageField(null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='users/images', null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)

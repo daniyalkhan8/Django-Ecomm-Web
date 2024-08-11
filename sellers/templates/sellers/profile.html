@@ -1,0 +1,114 @@
+{% extends "base_seller.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="card p-4 shadow-lg rounded border border-secondary" style="max-width: 600px; width: 100%">
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <!-- First Name -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.first_name.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.first_name.label }}</label
+                >
+                <div class="col-md-6">{{ form.first_name }}</div>
+                </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.last_name.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.last_name.label }}</label
+                >
+                <div class="col-md-6">{{ form.last_name }}</div>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.email.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.email.label }}</label
+                >
+                <div class="col-md-6">{{ form.email }}</div>
+                </div>
+            </div>
+
+            <!-- DOB -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.dob.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.dob.label }}</label
+                >
+                <div class="col-md-6">{{ form.dob }}</div>
+                </div>
+            </div>
+
+            <!-- State -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.state.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.state.label }}</label
+                >
+                <div class="col-md-6">{{ form.state }}</div>
+                </div>
+            </div>
+
+            <!-- Street -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.street.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.street.label }}</label
+                >
+                <div class="col-md-6">{{ form.street }}</div>
+                </div>
+            </div>
+
+            <!-- City -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.city.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.city.label }}</label
+                >
+                <div class="col-md-6">{{ form.city }}</div>
+                </div>
+            </div>
+
+            <!-- Postal Code -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                <label
+                    for="{{ form.postal_code.id_for_label }}"
+                    class="col-form-label col-md-4 text-center"
+                    >{{ form.postal_code.label }}</label
+                >
+                <div class="col-md-6">{{ form.postal_code }}</div>
+                </div>
+            </div>
+
+            <div class="text-center mt-3 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary me-2">Save</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'sellers:home' %}'">Back</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
