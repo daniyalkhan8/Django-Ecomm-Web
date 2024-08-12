@@ -9,4 +9,5 @@ urlpatterns = [
     path("home/", views.SellerHome, name="home"),
     path("logout/", views.SellerLogout, name="logout"),
     path("update_profile/", views.SellerUpdateProfile, name="update_profile"),
+    path("get-cities/", views.GetCities, name='get-cities'),
 ]

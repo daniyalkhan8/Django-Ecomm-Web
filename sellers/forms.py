@@ -37,3 +37,12 @@ class SellerProfileUpdateForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['city'].queryset = City.objects.none()
+
+        if 'state' in self.data:
+            try:
+                state_id = int(self.data.get('state'))
+                self.fields['city'].queryset = City.objects.filter(state_id__id=state_id).order_by("name")
+            except (ValueError, TypeError):
+                pass
+        elif self.instance.pk and self.instance.state_id is not None:
+            self.fields['city'].queryset = self.instance.state.city_set.order_by('name')

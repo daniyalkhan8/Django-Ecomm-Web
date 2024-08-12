@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+import json
 
 from .forms import SellerRegisterForm, SellerLoginForm, SellerProfileUpdateForm
+from utils.models import City
 
 
 def SellerRegister(request):
@@ -58,3 +61,11 @@ def SellerUpdateProfile(request):
     else:
         profile_update_form = SellerProfileUpdateForm(instance=request.user)
     return render(request, 'sellers/profile.html', {'form': profile_update_form})
+
+
+@login_required(login_url='/seller/login/')
+def GetCities(request):
+    data = json.loads(request.body)
+    state_id = data["state_id"]
+    cities = City.objects.filter(state_id__id=state_id).order_by("name")
+    return JsonResponse(list(cities.values("id", "name")), safe=False)
