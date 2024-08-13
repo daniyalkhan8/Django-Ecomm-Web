@@ -138,6 +138,12 @@
 
     function getStateId(e) {
         state_id = e.target.value;
+
+        if (state_id === "") {
+            city_field.innerHTML = '<option value="" selected>---------</option>'
+            return
+        }
+
         const data = { state_id: state_id }
         let url = "{% url 'sellers:get-cities' %}"
 
