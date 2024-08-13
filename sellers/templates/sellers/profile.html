@@ -3,10 +3,22 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-<div class="d-flex align-items-center justify-content-center vh-100">
+<div class="d-flex align-items-center justify-content-center">
     <div class="card p-4 shadow-lg rounded border border-secondary" style="max-width: 600px; width: 100%">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
+            <!-- Profile Picture -->
+            <div class="form-group mb-4">
+                <div class="row justify-content-center">
+                    <label for="{{ form.profile_picture.id_for_label }}" class="col-form-label col-md-4 text-center">
+                        {{ form.profile_picture.label }}
+                    </label>
+                    <div class="col-md-6">
+                        {{ form.profile_picture }}
+                    </div>
+                </div>
+            </div>
 
             <!-- First Name -->
             <div class="form-group mb-4">

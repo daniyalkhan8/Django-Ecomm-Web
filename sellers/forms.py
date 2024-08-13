@@ -19,6 +19,7 @@ class SellerLoginForm(forms.Form):
 class SellerProfileUpdateForm(UserChangeForm):
     dob = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
+    profile_picture = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
 
     class Meta:
         model = CustomUser
