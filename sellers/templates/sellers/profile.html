@@ -4,123 +4,207 @@
 
 {% block content %}
 <div class="d-flex align-items-center justify-content-center">
-    <div class="card p-4 shadow-lg rounded border border-secondary" style="max-width: 600px; width: 100%">
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+    <div>
+        <div class="card p-4 shadow-lg rounded border border-secondary" style="max-width: 600px; width: 100%">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
-            <!-- Profile Picture -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                    <label for="{{ form.profile_picture.id_for_label }}" class="col-form-label col-md-4 text-center">
-                        {{ form.profile_picture.label }}
-                    </label>
-                    <div class="col-md-6">
-                        {{ form.profile_picture }}
+                <!-- Profile Picture -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                        <label for="{{ form.profile_picture.id_for_label }}" class="col-form-label col-md-4 text-center">
+                            {{ form.profile_picture.label }}
+                        </label>
+                        <div class="col-md-6">
+                            {{ form.profile_picture }}
+                            {% if form.profile_picture.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.profile_picture.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- First Name -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.first_name.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.first_name.label }}</label
-                >
-                <div class="col-md-6">{{ form.first_name }}</div>
+                <!-- First Name -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.first_name.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.first_name.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                            <div class="text-danger">
+                                {% for error in form.first_name.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Last Name -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.last_name.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.last_name.label }}</label
-                >
-                <div class="col-md-6">{{ form.last_name }}</div>
+                <!-- Last Name -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.last_name.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.last_name.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                            <div class="text-danger">
+                                {% for error in form.last_name.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Email -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.email.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.email.label }}</label
-                >
-                <div class="col-md-6">{{ form.email }}</div>
+                <!-- Email -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.email.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.email.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="text-danger">
+                                {% for error in form.email.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- DOB -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.dob.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.dob.label }}</label
-                >
-                <div class="col-md-6">{{ form.dob }}</div>
+                <!-- DOB -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.dob.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.dob.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.dob }}
+                        {% if form.dob.errors %}
+                            <div class="text-danger">
+                                {% for error in form.dob.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- State -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.state.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.state.label }}</label
-                >
-                <div class="col-md-6">{{ form.state }}</div>
+                <!-- State -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.state.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.state.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.state }}
+                        {% if form.state.errors %}
+                            <div class="text-danger">
+                                {% for error in form.state.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Street -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.street.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.street.label }}</label
-                >
-                <div class="col-md-6">{{ form.street }}</div>
+                <!-- Street -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.street.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.street.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.street }}
+                        {% if form.street.errors %}
+                            <div class="text-danger">
+                                {% for error in form.street.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- City -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.city.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.city.label }}</label
-                >
-                <div class="col-md-6">{{ form.city }}</div>
+                <!-- City -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.city.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.city.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.city }}
+                        {% if form.city.errors %}
+                            <div class="text-danger">
+                                {% for error in form.city.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Postal Code -->
-            <div class="form-group mb-4">
-                <div class="row justify-content-center">
-                <label
-                    for="{{ form.postal_code.id_for_label }}"
-                    class="col-form-label col-md-4 text-center"
-                    >{{ form.postal_code.label }}</label
-                >
-                <div class="col-md-6">{{ form.postal_code }}</div>
+                <!-- Postal Code -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.postal_code.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.postal_code.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.postal_code }}
+                        {% if form.postal_code.errors %}
+                            <div class="text-danger">
+                                {% for error in form.postal_code.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="text-center mt-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary me-2">Save</button>
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'sellers:home' %}'">Back</button>
-            </div>
-        </form>
+                <div class="text-center mt-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary me-2">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'sellers:home' %}'">Back</button>
+                </div>
+            </form>
+        </div>
+        <p class="text-center mt-3">
+            <a href="{% url 'sellers:change_password' %}">Change your password.</a>
+        </p>
     </div>
 </div>
 

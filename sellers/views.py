@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
@@ -61,6 +62,19 @@ def SellerUpdateProfile(request):
     else:
         profile_update_form = SellerProfileUpdateForm(instance=request.user)
     return render(request, 'sellers/profile.html', {'form': profile_update_form})
+
+
+@login_required(login_url='/seller/login/')
+def SellerChangePassword(request):
+    if request.method == "POST":
+        change_pswd_form = PasswordChangeForm(request.user, request.POST)
+        if change_pswd_form.is_valid():
+            user = change_pswd_form.save()
+            update_session_auth_hash(request, user)
+            return redirect('sellers:home')
+    else:
+        change_pswd_form = PasswordChangeForm(request.user)
+    return render(request, 'sellers/change_password.html', {'form': change_pswd_form})
 
 
 @login_required(login_url='/seller/login/')

@@ -2,17 +2,19 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from users.models import CustomUser
-from utils.models import City, State
+from utils.models import City
 
 
 class SellerRegisterForm(UserCreationForm):
+    email = forms.EmailField(widget=forms.EmailInput())
+
     class Meta:
         model = CustomUser
         fields = ["first_name", "last_name", "email"]
 
 
 class SellerLoginForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.EmailInput())
     password = forms.CharField(widget=forms.PasswordInput)
 
 
