@@ -7,7 +7,7 @@ import json
 
 from .froms import BuyerRegisterForm, BuyerLoginForm, BuyerProfileUpdateForm
 from utils.models import City
-
+from utils.decorators import is_buyer
 
 def BuyerRegister(request):
     if request.method == "POST":
@@ -38,17 +38,20 @@ def BuyerLogin(request):
 
 
 @login_required(login_url='/buyer/login/')
+@is_buyer
 def BuyerHome(request):
     return render(request, 'buyers/home.html')
 
 
 @login_required(login_url='/buyer/login/')
+@is_buyer
 def BuyerLogout(request):
     logout(request)
     return redirect('buyers:login')
 
 
 @login_required(login_url='/buyer/login/')
+@is_buyer
 def BuyerUpdateProfile(request):
     if request.method == "POST":
         profile_update_form = BuyerProfileUpdateForm(
@@ -65,6 +68,7 @@ def BuyerUpdateProfile(request):
 
 
 @login_required(login_url='/buyer/login/')
+@is_buyer
 def BuyerChangePassword(request):
     if request.method == "POST":
         change_pswd_form = PasswordChangeForm(request.user, request.POST)
@@ -78,6 +82,7 @@ def BuyerChangePassword(request):
 
 
 @login_required(login_url='/byuer/login/')
+@is_buyer
 def GetCities(request):
     data = json.loads(request.body)
     state_id = data["state_id"]
