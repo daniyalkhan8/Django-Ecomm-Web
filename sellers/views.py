@@ -7,6 +7,7 @@ import json
 
 from .forms import SellerRegisterForm, SellerLoginForm, SellerProfileUpdateForm
 from utils.models import City
+from utils.decorators import is_seller
 
 
 def SellerRegister(request):
@@ -38,17 +39,20 @@ def SellerLogin(request):
 
 
 @login_required(login_url='/seller/login/')
+@is_seller
 def SellerHome(request):
     return render(request, 'sellers/home.html')
 
 
 @login_required(login_url='/seller/login/')
+@is_seller
 def SellerLogout(request):
     logout(request)
     return redirect('sellers:login')
 
 
 @login_required(login_url='/seller/login/')
+@is_seller
 def SellerUpdateProfile(request):
     if request.method == "POST":
         profile_update_form = SellerProfileUpdateForm(
@@ -65,6 +69,7 @@ def SellerUpdateProfile(request):
 
 
 @login_required(login_url='/seller/login/')
+@is_seller
 def SellerChangePassword(request):
     if request.method == "POST":
         change_pswd_form = PasswordChangeForm(request.user, request.POST)
@@ -78,6 +83,7 @@ def SellerChangePassword(request):
 
 
 @login_required(login_url='/seller/login/')
+@is_seller
 def GetCities(request):
     data = json.loads(request.body)
     state_id = data["state_id"]
