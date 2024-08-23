@@ -1,10 +1,6 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImages
+from .models import Category, Product
 from reviews.models import Review
-
-
-class ProductImagesTabularInline(admin.TabularInline):
-    model = ProductImages
 
 
 class ProductReviewsTabularInline(admin.TabularInline):
@@ -12,7 +8,7 @@ class ProductReviewsTabularInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    inlines = [ProductImagesTabularInline, ProductReviewsTabularInline]
+    inlines = [ProductReviewsTabularInline]
 
 
 admin.site.register(Category)
