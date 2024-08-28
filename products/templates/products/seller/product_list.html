@@ -1,0 +1,23 @@
+{% extends "base_seller.html" %}
+
+{% block title %}
+    Products
+{% endblock title %}
+
+{% block content %}
+<a href="{% url 'sellers:product_seller:add_product' %}" class="btn btn-primary me-2">Add Product</a>
+
+<input type="search" name="search_product" class="form-control" id="search_product" placeholder="Search Product.">
+
+{% for product in product_list %}
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <a href="" class="text-reset text-decoration-none"><h5 class="card-title">{{ product.name }}</h5></a>
+      <p class="card-text">{{product.description}}</p>
+      <p class="card-text">PKR {{product.sales_price}}</p>
+      <p class="card-text">{{product.qty_on_hand}} Units Available</p>
+    </div>
+  </div>
+{% endfor %}
+{% endblock content %}

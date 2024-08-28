@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from .models import ProductImages
+from .models import Product, ProductImages
 from .forms import ProductCreatForm
 from utils.decorators import is_seller
 
@@ -30,4 +30,16 @@ def SellerAddProduct(request):
         request, 
         "products/seller/add_product.html", 
         {"form": product_form}
+    )
+
+
+@login_required(login_url="/seller/login/")
+@is_seller
+def SellerProductList(request):
+    if request.method == "GET":
+        product_list = Product.objects.all()[:9]
+    return render(
+        request, 
+        'products/seller/product_list.html', 
+        {'product_list': product_list}
     )
