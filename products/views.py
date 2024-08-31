@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
-from .models import Product, ProductImages
+from .models import Product, ProductImages, Category
 from .forms import ProductCreatForm
 from utils.decorators import is_seller
 
@@ -22,7 +23,7 @@ def SellerAddProduct(request):
             for image in images:
                 product_image = ProductImages.objects.create(image=image)
                 product.images.add(product_image)
-            return redirect('sellers:home')
+            return redirect('sellers:product_seller:product_list')
     else:
         product_form = ProductCreatForm()
         
@@ -37,9 +38,23 @@ def SellerAddProduct(request):
 @is_seller
 def SellerProductList(request):
     if request.method == "GET":
-        product_list = Product.objects.all()[:9]
+        product_search = request.GET.get('product_search')
+        category_search = request.GET.get('category_search')
+        product_list = Product.objects.all()
+
+        if product_search:
+            product_list = product_list.filter(name__icontains=product_search)
+
+        if category_search:
+            product_list = product_list.filter(category__id=int(category_search))
+
+        categories = Category.objects.all()
+        paginator = Paginator(product_list, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
     return render(
         request, 
         'products/seller/product_list.html', 
-        {'product_list': product_list}
+        {'page_obj': page_obj, 'categories': categories}
     )
