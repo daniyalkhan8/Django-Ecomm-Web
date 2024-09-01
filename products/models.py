@@ -35,7 +35,7 @@ class Product(models.Model):
     def _generate_unique_slug(self, slug):
         verify_product = Product.objects.filter(slug=slug).exists()
         if verify_product:
-            slug = f"{slug}-{get_random_string(length=6)}"
+            slug = f"{slug}-{get_random_string(length=10)}"
         return slug
     
     def save(self, *args, **kwargs):

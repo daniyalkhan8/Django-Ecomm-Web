@@ -34,6 +34,16 @@ def SellerAddProduct(request):
     )
 
 
+@login_required(login_url='/seller/login/')
+@is_seller
+def SellerUpdateProduct(request, prod_slug):
+    if request.method == "POST":
+        pass
+    else:
+        product = Product.objects.get(slug=prod_slug)
+    return render(request, 'products/seller/update_product.html')
+
+
 @login_required(login_url="/seller/login/")
 @is_seller
 def SellerProductList(request):
