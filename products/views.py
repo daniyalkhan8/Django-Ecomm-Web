@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 from .models import Product, ProductImages, Category
-from .forms import ProductCreatForm
+from .forms import ProductCreatForm, ProductUpdateForm
 from utils.decorators import is_seller
 
 
@@ -37,11 +37,18 @@ def SellerAddProduct(request):
 @login_required(login_url='/seller/login/')
 @is_seller
 def SellerUpdateProduct(request, prod_slug):
+    product = get_object_or_404(Product, slug=prod_slug)
+
     if request.method == "POST":
         pass
     else:
-        product = Product.objects.get(slug=prod_slug)
-    return render(request, 'products/seller/update_product.html')
+        product_form = ProductUpdateForm(instance=product)
+
+    return render(
+        request, 
+        'products/seller/update_product.html',
+        {'form': product_form, 'product': product}
+    )
 
 
 @login_required(login_url="/seller/login/")
