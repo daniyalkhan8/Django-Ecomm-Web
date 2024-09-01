@@ -4,6 +4,8 @@ from .models import Product
 
 
 class ProductCreatForm(forms.ModelForm):
+    featured_image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
+
     class Meta:
         model = Product
         fields = [
@@ -11,5 +13,6 @@ class ProductCreatForm(forms.ModelForm):
             'description', 
             'sales_price', 
             'qty_on_hand', 
-            'category'
+            'category',
+            'featured_image'
         ]

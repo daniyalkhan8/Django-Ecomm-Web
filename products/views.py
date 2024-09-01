@@ -13,13 +13,13 @@ from utils.decorators import is_seller
 @is_seller
 def SellerAddProduct(request):
     if request.method == "POST":
-        product_form = ProductCreatForm(request.POST)
+        product_form = ProductCreatForm(request.POST, request.FILES)
 
         if product_form.is_valid():
             product = product_form.save(commit=False)
             product.seller_id = request.user
             product.save()
-            images = request.FILES.getlist('images')
+            images = request.FILES.getlist('product_images')
             for image in images:
                 product_image = ProductImages.objects.create(image=image)
                 product.images.add(product_image)
@@ -40,7 +40,7 @@ def SellerProductList(request):
     if request.method == "GET":
         product_search = request.GET.get('product_search')
         category_search = request.GET.get('category_search')
-        product_list = Product.objects.all()
+        product_list = Product.objects.all().order_by('-created_at')
 
         if product_search:
             product_list = product_list.filter(name__icontains=product_search)
