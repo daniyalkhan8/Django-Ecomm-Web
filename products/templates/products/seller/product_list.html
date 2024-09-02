@@ -12,7 +12,7 @@
         
         <div class="d-flex align-items-center">
             <form action="{% url 'sellers:product_seller:product_list' %}" method="get" class="d-flex justify-content-between mb-3">
-                <input type="search" name="product_search" class="form-control me-2" id="search_product" placeholder="Search product..." style="max-width: 300px;">
+                <input type="search" name="product_search" class="form-control me-2" id="search_product" placeholder="Search product..." {% if product_search %} value="{{product_search}}"{% endif %} style="max-width: 300px;">
                 <div class="input-group me-3" style="width: 350px;">
                     <select name="category_search" id="categorySelect" class="form-control">
                         <option value="">Select a category...</option>
@@ -27,6 +27,7 @@
     </div>
 
     <div class="row justify-content-center">
+        {% if page_obj %}
         {% for product in page_obj %}
         <div class="col-md-4 mb-4 d-flex justify-content-center">
             <div class="card" style="width: 15rem;">
@@ -40,10 +41,14 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <p>Currently you have no products.</p>
+        {% endif %}
     </div>
 
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
+            {% if page_obj %}
             {% if page_obj.has_previous %}
             <li class="page-item">
                 <a class="page-link" href="?page=1" aria-label="First">
@@ -72,6 +77,7 @@
                     <span aria-hidden="true">&raquo;&raquo;</span>
                 </a>
             </li>
+            {% endif %}
             {% endif %}
         </ul>
     </nav>

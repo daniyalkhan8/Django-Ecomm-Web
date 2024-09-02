@@ -3,7 +3,7 @@ from django import forms
 from .models import Product
 
 
-class ProductCreatForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     featured_image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
 
     class Meta:
@@ -15,18 +15,4 @@ class ProductCreatForm(forms.ModelForm):
             'qty_on_hand', 
             'category',
             'featured_image'
-        ]
-
-
-class ProductUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = [
-            'name', 
-            'description', 
-            'sales_price', 
-            'qty_on_hand', 
-            'category',
-            'featured_image',
-            'images',
         ]
