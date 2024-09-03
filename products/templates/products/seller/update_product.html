@@ -166,6 +166,7 @@
 
             <div class="text-center mt-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary me-2">Save</button>
+                <button type="button" class="btn btn-danger me-2" onclick="window.location.href='{% url 'sellers:product_seller:delete_product' product.slug %}'">Delete</button>
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'sellers:product_seller:product_list' %}'">Back</button>
             </div>
         </form>
