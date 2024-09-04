@@ -61,7 +61,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                 >
-                    Profile
+                    {{request.user.first_name}}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{% url 'sellers:update_profile' %}">View Profile</a></li>

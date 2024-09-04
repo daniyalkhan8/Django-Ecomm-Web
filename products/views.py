@@ -20,14 +20,13 @@ def SellerAddProduct(request):
         if product_form.is_valid():
             product = product_form.save(commit=False)
             product.seller_id = request.user
-            product.save(commit=False)
+            product.save()
             images = request.FILES.getlist('product_images')
 
             for image in images:
                 product_image = ProductImages.objects.create(image=image)
                 product.images.add(product_image)
 
-            product.save()
             return redirect('sellers:product_seller:product_list')
     else:
         product_form = ProductForm()
