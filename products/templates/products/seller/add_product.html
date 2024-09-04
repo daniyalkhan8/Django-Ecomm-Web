@@ -1,0 +1,158 @@
+{% extends "base_seller.html" %}
+
+{% block title %}
+    Add Product
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center">
+        <div class="card p-4 shadow-lg rounded border border-secondary" style="max-width: 600px; width: 100%">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Product Name -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                        <label for="{{ form.name.id_for_label }}" class="col-form-label col-md-4 text-center">
+                            {{ form.name.label }}
+                        </label>
+                        <div class="col-md-6">
+                            {{ form.name }}
+                            {% if form.profile_picture.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.name.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.description.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.description.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="text-danger">
+                                {% for error in form.description.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Sales Price -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.sales_price.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.sales_price.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.sales_price }}
+                        {% if form.sales_price.errors %}
+                            <div class="text-danger">
+                                {% for error in form.sales_price.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Qty On Hand -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.qty_on_hand.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.qty_on_hand.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.qty_on_hand }}
+                        {% if form.qty_on_hand.errors %}
+                            <div class="text-danger">
+                                {% for error in form.qty_on_hand.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.category.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.category.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                            <div class="text-danger">
+                                {% for error in form.category.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Featured Image -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="{{ form.featured_image.id_for_label }}"
+                        class="col-form-label col-md-4 text-center"
+                        >{{ form.featured_image.label }}</label
+                    >
+                    <div class="col-md-6">
+                        {{ form.featured_image }}
+                        {% if form.featured_image.errors %}
+                            <div class="text-danger">
+                                {% for error in form.featured_image.errors %}
+                                    <small>{{ error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="form-group mb-4">
+                    <div class="row justify-content-center">
+                    <label
+                        for="images"
+                        class="col-form-label col-md-4 text-center"
+                        >Images</label
+                    >
+                    <div class="col-md-6">
+                        <input type="file" name="product_images" id="images" multiple required class="form-control-file" />
+                    </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary me-2">Add Product</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'sellers:product_seller:product_list' %}'">Back</button>
+                </div>
+            </form>
+        </div>
+</div>
+{% endblock content %}

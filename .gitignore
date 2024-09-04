@@ -4,6 +4,9 @@ media/
 # Static files
 static/
 
+#Virtual Environment
+venv/
+
 # Logs
 *.log
 
@@ -29,5 +32,4 @@ Thumbs.db
 __pycache__/
 
 # Other files
-requirements.txt
 *.env

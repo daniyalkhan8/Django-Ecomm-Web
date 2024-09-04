@@ -2,6 +2,8 @@ from django.core.exceptions import PermissionDenied
 from functools import wraps
 
 
+# Decorators for sellers
+
 def is_seller(view_func):
     @wraps(view_func)
     def wrap(request, *args, **kwargs):
@@ -10,6 +12,8 @@ def is_seller(view_func):
         raise PermissionDenied
     return wrap
 
+
+# Decorators for buyers
 
 def is_buyer(view_func):
     @wraps(view_func)
