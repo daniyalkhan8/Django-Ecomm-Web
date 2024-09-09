@@ -4,12 +4,10 @@ from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound
 from django.urls import reverse
 
-from .models import Product, ProductImages, Category
-from .forms import ProductForm
+from ..models import Product, ProductImages, Category
+from ..forms import ProductForm
 from utils.decorators import is_seller
 
-
-# Seller Products Views
 
 @login_required(login_url="/seller/login/")
 @is_seller

@@ -36,17 +36,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link active" aria-current="page" href="{% url 'buyers:product_buyer:product_list' %}">
+                Products
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="">
                 Cart
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link active" aria-current="page" href="">
                 Wishlist
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link active" aria-current="page" href="">
                 Orders
               </a>
             </li>
@@ -62,7 +67,7 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                 >
-                    Profile
+                    {{request.user.first_name}}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{% url 'buyers:update_profile' %}">View Profile</a></li>

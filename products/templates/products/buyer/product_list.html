@@ -1,0 +1,91 @@
+{% extends "base_buyer.html" %}
+
+{% block title %}
+    Products
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+    <div class="d-flex justify-content-end mb-3 align-items-center">        
+        <div class="d-flex align-items-center">
+            <form action="{% url 'buyers:product_buyer:product_list' %}" method="get" class="d-flex justify-content-between mb-3">
+                <input type="search" name="product_search" class="form-control me-2" id="search_product" placeholder="Search product..." {% if product_search %} value="{{product_search}}"{% endif %} style="max-width: 300px;">
+                <div class="input-group me-3" style="width: 350px;">
+                    <select name="category_search" id="categorySelect" class="form-control">
+                        <option value="">Select a category...</option>
+                        {% for category in categories %}
+                        <option value="{{category.id}}" {% if request.GET.category_search == category.id|stringformat:"s" %}selected{% endif %}>{{category.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn btn-primary me-2">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        {% if page_obj %}
+        {% for product in page_obj %}
+        <div class="col-md-4 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 15rem;">
+                <img src="{{product.featured_image.url}}" class="card-img-top" style="width: 100%; height: 15rem;">
+                <div class="card-body">
+                    <a href="" class="text-reset text-decoration-none"><h5 class="card-title">{{ product.name }}</h5></a>
+                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text">PKR {{product.sales_price}}</p>
+                    <p class="card-text">{{product.qty_on_hand}} Units Available</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No products found.</p>
+        {% endif %}
+    </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj %}
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+    
+            <li class="page-item disabled">
+                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+    
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            {% endif %}
+        </ul>
+    </nav>
+    
+  
+</div>
+
+<script>
+    function selectOption(option) {
+      document.getElementById('selectedOption').value = option;
+    }
+</script>
+{% endblock content %}

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path("update-profile/", views.BuyerUpdateProfile, name="update_profile"),
     path("change-password/", views.BuyerChangePassword, name="change_password"),
     path("get-cities/", views.GetCities, name='get-cities'),
+    path("product/", include('products.urls.buyer_urls', namespace='product_buyer')),
 ]
