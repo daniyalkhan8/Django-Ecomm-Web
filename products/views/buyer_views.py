@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseNotFound
 from django.core.paginator import Paginator
 
 from ..models import Product, Category
@@ -26,3 +27,18 @@ def BuyerProductList(request):
         'products/buyer/product_list.html', 
         {'page_obj': page_obj, 'categories': categories, 'product_search': product_search}
     )
+
+
+def BuyerViewProduct(request, prod_slug):
+    if request.method == "GET":
+        try:
+            product = get_object_or_404(
+                Product, 
+                slug=prod_slug
+            )
+        except Exception:
+            return HttpResponseNotFound("Product Not Found.")
+        
+        images = product.images.all()
+
+        return render(request, 'products/buyer/product_view.html', {'product': product, 'images': images})
