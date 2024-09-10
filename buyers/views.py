@@ -37,8 +37,6 @@ def BuyerLogin(request):
     return render(request, 'buyers/login.html', {'form': login_form})
 
 
-@login_required(login_url='/buyer/login/')
-@is_buyer
 def BuyerHome(request):
     return render(request, 'buyers/home.html')
 
