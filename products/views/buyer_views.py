@@ -2,10 +2,8 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 
 from ..models import Product, Category
-from utils.decorators import is_buyer
 
 
-@is_buyer
 def BuyerProductList(request):
     if request.method == "GET":
         product_search = request.GET.get('product_search')
