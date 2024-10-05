@@ -41,4 +41,8 @@ def BuyerViewProduct(request, prod_slug):
         
         images = product.images.all()
 
-        return render(request, 'products/buyer/product_view.html', {'product': product, 'images': images})
+        return render(
+            request,
+            'products/buyer/product_view.html',
+            {'product': product, 'images': images}
+        )

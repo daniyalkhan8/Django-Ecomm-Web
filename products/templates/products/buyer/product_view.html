@@ -5,6 +5,104 @@
 {% endblock title %}
 
 {% block content %}
-{{product}}
-{{images}}
+<div class="d-flex align-items-center justify-content-center">
+    <div class="card p-4 border-0" style="max-width: 850px; width: 100%">
+
+        <!-- Product Name -->
+        <div class="form-group mb-4">
+            <div class="row justify-content-center">
+                <label for="{{ product.name }}" class="col-form-label col-md-4 text-center">
+                    Product Name
+                </label>
+                <div class="col-md-6">
+                    {{ product.name }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group mb-4">
+            <div class="row justify-content-center">
+            <label
+                for="{{ product.description }}"
+                class="col-form-label col-md-4 text-center"
+                >Description</label
+            >
+            <div class="col-md-6">
+                {{ product.description }}
+            </div>
+            </div>
+        </div>
+
+        <!-- Sales Price -->
+        <div class="form-group mb-4">
+            <div class="row justify-content-center">
+            <label
+                for="{{ product.sales_price }}"
+                class="col-form-label col-md-4 text-center"
+                >Sales Price</label
+            >
+            <div class="col-md-6">
+                {{ product.sales_price }}
+            </div>
+            </div>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group mb-4">
+            <div class="row justify-content-center">
+            <label
+                for="{{ product.category }}"
+                class="col-form-label col-md-4 text-center"
+                >Category</label
+            >
+            <div class="col-md-6">
+                {{ product.category }}
+            </div>
+            </div>
+        </div>
+
+        <!-- Featured Image -->
+        <div class="form-group mb-4">
+            <div class="row justify-content-center">
+            <label
+                for="{{ product.featured_image.url }}"
+                class="col-form-label col-md-4 text-center"
+                >Featured Image</label
+            >
+            <div class="col-md-6">
+                <div class="mb-3 d-flex align-items-center">
+                    <img src="{{ product.featured_image.url }}" name="featured-image-{{ product.slug }}" class="card-img-top mb-3" style="width: 100%; height: 20rem;">
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Images -->
+        <div class="form-group mb-4">
+            <div class="row justify-content-center">
+            <label
+                for="{{ images }}"
+                class="col-form-label col-md-4 text-center"
+                >Images</label
+            >
+            <div class="col-md-6">
+                {% if images %}
+                    {% for image in images %}
+                    <div class="mb-3 d-flex align-items-center">
+                        <img src="{{ image.image.url }}" name="image{{ image.id }}" class="card-img-top mb-3" style="width: 100%; height: 20rem;">
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p><b>This product has no images</b></p>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'buyers:product_buyer:product_list' %}'">Back</button>
+        </div>
+    </div>
+</div>
 {% endblock content %}
