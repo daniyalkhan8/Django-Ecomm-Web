@@ -31,7 +31,7 @@
             <div class="card" style="width: 15rem;">
                 <img src="{{product.featured_image.url}}" class="card-img-top" style="width: 100%; height: 15rem;">
                 <div class="card-body">
-                    <a href="" class="text-reset text-decoration-none"><h5 class="card-title">{{ product.name }}</h5></a>
+                    <a href="{% url 'buyers:product_buyer:product_view' prod_slug=product.slug %}" class="text-reset text-decoration-none"><h5 class="card-title">{{ product.name }}</h5></a>
                     <p class="card-text">{{product.description}}</p>
                     <p class="card-text">PKR {{product.sales_price}}</p>
                     <p class="card-text">{{product.qty_on_hand}} Units Available</p>

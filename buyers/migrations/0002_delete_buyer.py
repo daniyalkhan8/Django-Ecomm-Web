@@ -7,6 +7,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('buyers', '0001_initial'),
+        ('cart', '0002_rename_cart_id_cartitem_cart_and_more'),
+        ('orders', '0003_rename_city_id_order_city_and_more'),
+        ('reviews', '0002_rename_product_id_review_product_and_more'),
+        ('wishlist', '0002_rename_product_id_wishlist_product_and_more'),
     ]
 
     operations = [
