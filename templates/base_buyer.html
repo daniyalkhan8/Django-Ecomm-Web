@@ -56,8 +56,8 @@
               </a>
             </li>
           </ul>
-          {% if user.is_authenticated %}
           <ul class="navbar-nav me-5">
+            {% if user.is_authenticated and user.user_type == 'buyer' %}
             <li class="nav-item dropdown">
                 <a
                     class="nav-link dropdown-toggle"
@@ -74,8 +74,18 @@
                     <li><a class="dropdown-item" href="{% url 'buyers:logout' %}">Logout</a></li>
                 </ul>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    href="{% url 'buyers:login' %}"
+                    aria-expanded="false"
+                >
+                    Sign In
+                </a>
+            </li>
+            {% endif %}
           </ul>
-          {% endif %}
         </div>
       </div>
     </nav>
