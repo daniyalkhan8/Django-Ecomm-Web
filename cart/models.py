@@ -10,6 +10,9 @@ class Cart(models.Model):
     total_price = models.DecimalField(max_digits=14, decimal_places=3)
     created_at = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return f"{self.buyer_id.name} - {self.total_price}"
+
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
@@ -17,3 +20,6 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=14, decimal_places=3)
     created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.price}"
