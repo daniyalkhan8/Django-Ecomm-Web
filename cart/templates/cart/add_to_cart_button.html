@@ -1,0 +1,1 @@
+<button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'buyers:cart:add_to_cart' product_id=product.id product_qty=1 %}?next={{ request.path|urlencode }}'">Add To Cart</button>

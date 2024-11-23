@@ -12,4 +12,5 @@ urlpatterns = [
     path("change-password/", views.BuyerChangePassword, name="change_password"),
     path("get-cities/", views.GetCities, name='get-cities'),
     path("product/", include('products.urls.buyer_urls', namespace='product_buyer')),
+    path("cart/", include('cart.urls', namespace='cart'))
 ]
