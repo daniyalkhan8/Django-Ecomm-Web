@@ -21,3 +21,10 @@ def AddProductToCart(request, product_id, product_qty):
     cart.save()
     previous_url = request.META.get('HTTP_REFERER', '/')
     return HttpResponseRedirect(previous_url)
+
+
+@login_required(login_url='/buyer/login/')
+@is_buyer
+def RemoveProductFromCart(request, product_id, product_qty):
+    product = get_object_or_404(Product, id=product_id)
+    pass
